@@ -10,14 +10,26 @@ public class battleShip {
         Player player1 = new Player(sc.nextLine());
         System.out.println("Enter the name of the second player");
         Player player2 = new Player(sc.nextLine());
-        createMap(player1);
+        fillMap(player1);
+//        battle();
 
     }
 
-    private static void createMap(Player player) {
+    //-----------battle----------------
+//    private static int battle(Player player){
+//        String[][] map = player.getMap().getGameMap();
+//        String[][] mapCopy = player.getMap().getGameMapCopy();
+//        String input;
+//        while (true){
+//            input = sc.nextLine().trim();
+//            if (v)
+//        }
+//    }
+    //-----------Fill map---------------
+    private static void fillMap(Player player) {
         String input;
         for (enumShip s: enumShip.values()) {
-            writeMap(player.getMap().gameMap);
+            writeMap(player.getMap().getGameMap());
             System.out.printf("%s, enter the coordinates of the %s (%d cells)\n", player.getName(), s.getName(), s.getCount());
             input = sc.nextLine();
             details(input, player.hashShip.get(s), player.getMap().getGameMap());
@@ -27,6 +39,18 @@ public class battleShip {
         sc.nextLine();
 //        clear();
     }
+
+//    public static void clear(){
+//        //Clears Screen in java
+//        try {
+//            if (System.getProperty("os.name").contains("Windows"))
+//                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//            else
+//                Runtime.getRuntime().exec("clear");
+//        } catch (IOException | InterruptedException ex) {
+//            System.out.println("error");
+//        }
+//    }
 
     private static void writeMap(String[][] gameMap) {
         for (String[] strings : gameMap) {
@@ -47,6 +71,7 @@ public class battleShip {
                 if ((ship.getStartL() == ship.getEndL() || ship.getStartD() == ship.getEndD()) && verifyCell(ship, gameMap) &&
                         (ship.getEndL() - ship.getStartL() + 1 == ship.getCountCell() || ship.getEndD() - ship.getStartD() + 1 == ship.getCountCell())){
                     fillShip(ship, gameMap);
+                    ship.coordination();
                     сondition = false;
                 } else {
                     errors(ship);

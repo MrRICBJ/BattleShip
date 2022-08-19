@@ -1,8 +1,8 @@
 package org.battleShip;
 
 public class Map {
-    String[][] gameMap = gameField();
-    String[][] gameMapCopy = gameField();
+    private String[][] gameMap = gameField();
+    private String[][] gameMapCopy = gameField();
 
     private static String[][] gameField() {
         String[][] gameField = new String[11][11];

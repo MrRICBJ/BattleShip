@@ -3,13 +3,22 @@ package org.battleShip;
 public class Ship {
     private String name;
     private int startL, endL, startD, endD;
+    String[] s;
     private int countCell;
+
 
     public Ship(String name, int cellShip) {
         this.name = name;
         this.countCell = cellShip;
+        s = new String[this.countCell];
     }
 
+    protected void coordination(){
+        int j = this.startD;
+        for (int i = 0; i < this.countCell; i++) {
+            s[i] = (char)this.startL + String.valueOf(j);
+        }
+    }
     protected boolean whichShip(){
         return this.startD != this.endD;
     }
