@@ -29,12 +29,12 @@ public class battleShip {
     private static void fillMap(Player player) {
         String input;
         for (enumShip s: enumShip.values()) {
-            writeMap(player.getMap().getGameMap());
+            render(player.getMap(), 0);
             System.out.printf("%s, enter the coordinates of the %s (%d cells)\n", player.getName(), s.getName(), s.getCount());
             input = sc.nextLine();
             details(input, player.hashShip.get(s), player.getMap().getGameMap());
         }
-        writeMap(player.getMap().getGameMap());
+        render(player.getMap(), 0);
         System.out.printf("Press Enter and pass the turn to %s", player.getName());
         sc.nextLine();
 //        clear();
@@ -52,14 +52,15 @@ public class battleShip {
 //        }
 //    }
 
-    private static void writeMap(String[][] gameMap) {
-        for (String[] strings : gameMap) {
-            for (String string : strings) {
-                System.out.print(string + ' ');
-            }
-            System.out.print("\n");
-        }
-    }
+//    private static void render(Map map, int i) {
+//        String[][] gameMap =  i == 0 ? map.getGameMap() : map.getGameMapCopy();
+//        for (String[] strings : gameMap) {
+//            for (String string : strings) {
+//                System.out.print(string + ' ');
+//            }
+//            System.out.print("\n");
+//        }
+//    }
 
 
     protected static void details(String input, Ship ship, String[][] gameMap) {
