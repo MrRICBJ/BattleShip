@@ -12,13 +12,19 @@ public class Player {
     private static Ship four = new Ship(enumShip.FOUR.getName(), enumShip.FOUR.getCount());
     private static Ship tree1 = new Ship(enumShip.THREE1.getName(), enumShip.THREE1.getCount());
     private static Ship tree2 = new Ship(enumShip.THREE2.getName(), enumShip.THREE2.getCount());
-    HashMap <enumShip, Ship> hashShip = new HashMap<>();
-    HashMap <String, Ship> HashShip = new HashMap<>();
+    private HashMap <enumShip, Ship> hashShip = new HashMap<>();
+    private HashMap <String, Ship>  allShip= new HashMap<>();
 
-
-    private void hashShips(HashMap <String, Ship> HashShip) {
-
+    public HashMap<enumShip, Ship> getHashShip() {
+        return hashShip;
     }
+
+    public HashMap<String, Ship> getAllShip() {
+        return allShip;
+    }
+//    private void hashShips(HashMap <String, Ship> HashShip) {
+//
+//    }
 
     private static void ship(HashMap <enumShip, Ship> hashShip){
         hashShip.put(TWO, two);

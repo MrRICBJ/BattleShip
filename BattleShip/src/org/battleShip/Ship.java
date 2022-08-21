@@ -13,15 +13,24 @@ public class Ship {
         s = new String[this.countCell];
     }
 
-    protected void coordination(){
-        int j = this.startD;
-        for (int i = 0; i < this.countCell; i++) {
-            s[i] = (char)this.startL + String.valueOf(j);
-        }
-    }
-    protected boolean whichShip(){
-        return this.startD != this.endD;
-    }
+//    public void coordination(){
+//        int j = this.startD;
+//        if (whichShip()) {
+//            for (int i = 0; i < this.countCell; i++) {
+//                s[i] = (char) this.startL + String.valueOf(j);
+//                j++;
+//            }
+//        } else {
+//            j = this.startL;
+//            for (int i = 0; i < this.countCell; i++) {
+//                s[i] = (char)j + String.valueOf(this.startD);
+//                j++;
+//            }
+//        }
+//    }
+//    public boolean whichShip(){
+//        return this.startD != this.endD;
+//    }
     public int getStartL() {
         return startL;
     }
