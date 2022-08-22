@@ -1,16 +1,16 @@
 package org.battleShip;
 
 public class Ship {
-    private String name;
+    private final String name;
     private int startL, endL, startD, endD;
-    String[] s;
+//    String[] s;
     private int countCell;
 
 
     public Ship(String name, int cellShip) {
         this.name = name;
         this.countCell = cellShip;
-        s = new String[this.countCell];
+//        s = new String[this.countCell];
     }
 
 //    public void coordination(){
@@ -47,6 +47,16 @@ public class Ship {
         return endD;
     }
 
+    public void setCountCell() {
+        this.countCell--;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public int getCountCell() {
+        return countCell;
+    }
     public void setStartL(int startL) {
         this.startL = startL;
     }
@@ -61,13 +71,5 @@ public class Ship {
 
     public void setEndD(int endD) {
         this.endD = endD;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCountCell() {
-        return countCell;
     }
 }

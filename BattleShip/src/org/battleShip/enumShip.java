@@ -1,10 +1,10 @@
 package org.battleShip;
 
 public enum enumShip {
-    FIVE("Aircraft Carrier", 5),
-    FOUR("Battleship", 4),
-    THREE1("Submarine", 3),
-    THREE2("Cruiser", 3),
+//    FIVE("Aircraft Carrier", 5),
+//    FOUR("Battleship", 4);
+//    THREE1("Submarine", 3),
+//    THREE2("Cruiser", 3),
     TWO("Destroyer", 2);
 
     private String name;

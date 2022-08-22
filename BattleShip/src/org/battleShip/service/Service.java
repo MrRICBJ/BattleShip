@@ -19,4 +19,7 @@ public interface Service {
     boolean seeCellY(String[][] s, int y1, int y2, int count);
     public void hashCoordination(Ship ship, Player player);
     public boolean whichShip(int a, int b);
+    void shot(Player player1, Player player2);
+    boolean watch(Player player1, String shotLocation, Player player2);
+    boolean verifyShot(String s);
     }

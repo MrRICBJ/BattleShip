@@ -16,6 +16,16 @@ public class battleShip {
         System.out.println("Enter the name of the second player");
         Player player2 = new Player(sc.nextLine());
         service.addShip(player1);
+        service.addShip(player2);
+//        System.out.println(player1);
+//        System.out.println(player2);
+//        System.out.println(player1.getTwo());
+//        System.out.println(player2.getTwo());
+//        player1.
+        while (player1.getCount() != 1 || player2.getCount() != 1) {
+            service.shot(player1, player2);
+            service.shot(player2, player1);
+        }
     }
 }
 
