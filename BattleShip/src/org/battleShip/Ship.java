@@ -3,34 +3,14 @@ package org.battleShip;
 public class Ship {
     private final String name;
     private int startL, endL, startD, endD;
-//    String[] s;
     private int countCell;
 
 
     public Ship(String name, int cellShip) {
         this.name = name;
         this.countCell = cellShip;
-//        s = new String[this.countCell];
     }
 
-//    public void coordination(){
-//        int j = this.startD;
-//        if (whichShip()) {
-//            for (int i = 0; i < this.countCell; i++) {
-//                s[i] = (char) this.startL + String.valueOf(j);
-//                j++;
-//            }
-//        } else {
-//            j = this.startL;
-//            for (int i = 0; i < this.countCell; i++) {
-//                s[i] = (char)j + String.valueOf(this.startD);
-//                j++;
-//            }
-//        }
-//    }
-//    public boolean whichShip(){
-//        return this.startD != this.endD;
-//    }
     public int getStartL() {
         return startL;
     }

@@ -92,34 +92,37 @@ public class GameService implements Service {
     @Override
     public void fillShip(Ship ship, String[][] map) {
         if (whichShip(ship.getStartD(), ship.getEndD()))
-            fillX(ship.getStartD(), ship.getEndD(), map[ship.getStartL() - 64]);
+            fillX(ship.getStartD(), ship.getEndD(), map[ship.getStartL() - 64], "O");
         else
-            fillY(map, ship.getStartL() - 64, ship.getEndL() - 64, ship.getStartD());
+            fillY(map, ship.getStartL() - 64, ship.getEndL() - 64, ship.getStartD(), "O");
     }
 
     @Override
-    public void fillX(int x1, int x2, String[] s) {
+    public void fillX(int x1, int x2, String[] s, String str) {
         for (int i = x1; i <= x2; i++) {
-            s[i] = "O";
+            if (s[i].equals("X") && str.equals("#")){}
+            else
+                s[i] = str;
         }
     }
 
     @Override
-    public void fillY(String[][] s, int y1, int y2, int count) {
+    public void fillY(String[][] s, int y1, int y2, int count, String str) {
         for (int i = y1; i <= y2; i++) {
-            s[i][count] = "O";
+            if (!str.equals("#") && !s[i][count].equals("X"))
+                s[i][count] = str;
         }
     }
 
     @Override
-    public int arrayOutagePlus(int count) {
+    public int Plus(int count) {
         if (count < 10)
             count++;
         return count;
     }
 
     @Override
-    public int arrayOutageMinus(int count) {
+    public int Minus(int count) {
         if (count > 1)
             count--;
         return count;
@@ -129,13 +132,13 @@ public class GameService implements Service {
     public boolean verifyCell(Ship ship, String[][] gameMap) {
         boolean res;
         if (whichShip(ship.getStartD(), ship.getEndD()))
-            res = seeCellX(arrayOutageMinus(ship.getStartD()), arrayOutagePlus(ship.getEndD()), gameMap[ship.getStartL() - 64]) &&
-                    seeCellX(arrayOutageMinus(ship.getStartD()), arrayOutagePlus(ship.getEndD()), gameMap[arrayOutageMinus(ship.getStartL() - 64)]) &&
-                    seeCellX(arrayOutageMinus(ship.getStartD()), arrayOutagePlus(ship.getEndD()), gameMap[arrayOutagePlus(ship.getStartL() - 64)]);
+            res = seeCellX(Minus(ship.getStartD()), Plus(ship.getEndD()), gameMap[ship.getStartL() - 64]) &&
+                    seeCellX(Minus(ship.getStartD()), Plus(ship.getEndD()), gameMap[Minus(ship.getStartL() - 64)]) &&
+                    seeCellX(Minus(ship.getStartD()), Plus(ship.getEndD()), gameMap[Plus(ship.getStartL() - 64)]);
         else
-            res = seeCellY(gameMap, arrayOutageMinus(ship.getStartL() - 64), arrayOutagePlus(ship.getEndL() - 64), arrayOutagePlus(ship.getStartD())) &&
-                    seeCellY(gameMap, arrayOutageMinus(ship.getStartL() - 64), arrayOutagePlus(ship.getEndL() - 64), arrayOutageMinus(ship.getStartD())) &&
-                    seeCellY(gameMap, arrayOutageMinus(ship.getStartL() - 64), arrayOutagePlus(ship.getEndL() - 64), ship.getStartD());
+            res = seeCellY(gameMap, Minus(ship.getStartL() - 64), Plus(ship.getEndL() - 64), Plus(ship.getStartD())) &&
+                    seeCellY(gameMap, Minus(ship.getStartL() - 64), Plus(ship.getEndL() - 64), Minus(ship.getStartD())) &&
+                    seeCellY(gameMap, Minus(ship.getStartL() - 64), Plus(ship.getEndL() - 64), ship.getStartD());
         return res;
     }
 
@@ -195,33 +198,27 @@ public class GameService implements Service {
     }
 
     @Override
-    public boolean watch(Player player1, String shotLocation, Player player2) {
+    public int watch(Player player1, String shotLocation, Player player2) {
         String[][] map = player1.getMap().getGameMap(), mapCopy = player1.getMap().getGameMapCopy();
         int i = (int) shotLocation.charAt(0) - 64, j = Integer.parseInt(shotLocation.replaceAll("\\D+", ""));
         String ch;
-        boolean bool;
+        int bool;
 
         if (!mapCopy[i][j].equals("~")) {
             System.out.println("You have shot here before! Try again:");
-            return false;
+            return 0;
         } else {
             if (player1.getAllShip().containsKey(shotLocation)) {
                 ch = "X";
-                bool = true;
-                Ship ship = player1.getAllShip().get(shotLocation);
+                bool = 2;
                 player1.getAllShip().get(shotLocation).setCountCell();
             } else {
                 ch = "M";
                 System.out.println("You missed!");
-                bool = false;
+                bool = 1;
             }
             map[i][j] = ch;
             mapCopy[i][j] = ch;
-            if (ch.equals("M")) {
-                renderer.render(player1.getMap(), 1);
-                System.out.println("----------------------");
-                renderer.render(player2.getMap(), 0);
-            }
         }
         return bool;
     }
@@ -254,25 +251,53 @@ public class GameService implements Service {
         while (true) {
             shotLocation = sc.nextLine().trim();
             if (verifyShot(shotLocation)) {
+                int dc;
                 coordinate = Integer.parseInt(shotLocation.replaceAll("\\D+", ""));
                 if (shotLocation.charAt(0) < 'A' || shotLocation.charAt(0) > 'J' || coordinate < 1 || coordinate > 10)
                     System.out.println("Error! You entered the wrong coordinates! Try again:");
-                else if (watch(player2, shotLocation, player1)) {
-                    ship = player2.getAllShip().get(shotLocation);
-                    if (player2.getAllShip().get(shotLocation).getCountCell() == 0) {
-                        player2.setCount();
-                        if (player2.getCount() != 1)
-                            System.out.println("You sank a ship!");
-                    } else if (player2.getAllShip().get(shotLocation).getCountCell() != 0 && player2.getCount() != 1)
-                        System.out.println("You hit a ship!");
-                    renderer.render(player2.getMap(), 1);//
+                else if ((dc = watch(player2, shotLocation, player1)) > 0) {
+                    if (dc == 2) {
+                        if (player2.getAllShip().get(shotLocation).getCountCell() == 0) {
+                            player2.setCount();
+                            fillEmptyCell(player2.getAllShip().get(shotLocation), player2.getMap().getGameMapCopy());
+                            if (player2.getCount() != 1)   //тут поменять на 5-----------------------------------------------
+                                System.out.println("You sank a ship!");
+                        } else if (player2.getAllShip().get(shotLocation).getCountCell() != 0 && player2.getCount() != 1) //тут поменять на 5------------------------------------------
+                            System.out.println("You hit a ship!");
+                    }
+                    renderer.render(player2.getMap(), 1);
                     System.out.println("----------------------");
                     renderer.render(player1.getMap(), 0);
                     break;
                 }
             }
         }
-        System.out.println("Press Enter and pass the move to another player");
-        sc.nextLine();
+        if (player2.getCount() != 1) {   //тут поменять на 5------------------------------------------------------------------------------------
+            System.out.println("Press Enter and pass the move to another player");
+            sc.nextLine();
+        }
+    }
+
+    @Override
+    public void fillEmptyCell(Ship ship, String[][] map) {
+        if (whichShip(ship.getStartD(), ship.getEndD())) {
+            fillX(Minus(ship.getStartD()), Plus(ship.getEndD()), map[ship.getStartL() - 64], "#");
+            fillX(Minus(ship.getStartD()), Plus(ship.getEndD()), map[Minus(ship.getStartL() - 64)], "#");
+            fillX(Minus(ship.getStartD()), Plus(ship.getEndD()), map[Plus(ship.getStartL() - 64)], "#");
+        } else {
+            fillY(map, Minus(ship.getStartL() - 64), Plus(ship.getEndL() - 64), Plus(ship.getStartD()), "#");
+            fillY(map, Minus(ship.getStartL() - 64), Plus(ship.getEndL() - 64), Minus(ship.getStartD()), "#");
+            fillY(map, Minus(ship.getStartL() - 64), Plus(ship.getEndL() - 64), ship.getStartD(), "#");
+        }
+    }
+
+    @Override
+    public String correctName() {
+        String input = sc.nextLine().trim();
+        while (input.isEmpty()) {
+            System.out.println("Error. Try again:");
+            input = sc.nextLine().trim();
+        }
+        return input;
     }
 }

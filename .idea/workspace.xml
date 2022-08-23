@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a65b5557-5377-4fa5-8732-5d0e4e07ceec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/BattleShip/src/org/battleShip/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/BattleShip/src/org/battleShip/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleShip/src/org/battleShip/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/BattleShip/src/org/battleShip/Ship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleShip/src/org/battleShip/battleShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/BattleShip/src/org/battleShip/battleShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleShip/src/org/battleShip/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BattleShip/src/org/battleShip/service/GameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleShip/src/org/battleShip/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/BattleShip/src/org/battleShip/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/Ship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/battleShip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/battleShip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/enumShip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/enumShip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/service/GameService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/service/GameService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/service/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BattleShip/org/battleShip/service/Service.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/bjanette/Desktop/wagesrt"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bjanette/Desktop/wagesrt&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.battleShip.service" />
@@ -74,7 +86,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661091427290</updated>
+      <workItem from="1661256478828" duration="1534000" />
+      <workItem from="1661275844731" duration="4331000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
