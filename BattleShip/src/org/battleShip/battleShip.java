@@ -4,7 +4,6 @@ import org.battleShip.service.GameService;
 import org.battleShip.service.Service;
 import org.battleShip.view.ConsoleRendererImpl;
 
-import java.util.Scanner;
 
 public class battleShip {
     static Service service = new GameService(new ConsoleRendererImpl());
@@ -16,13 +15,14 @@ public class battleShip {
         Player player2 = new Player(service.correctName());
         service.addShip(player1);
         service.addShip(player2);
-        while (player1.getCount() != 1 || player2.getCount() != 1) { //тут поменять на 5-------------------------------------------------------------
+        while (player1.getCount() != 5 || player2.getCount() != 5) {
             service.shot(player1, player2);
-            if (player2.getCount() == 1) //тут поменять на 5-------------------------------------------------------------
+            if (player2.getCount() == 5)
                 break;
             service.shot(player2, player1);
         }
         System.out.println("\nYou sank the last ship. You won. Congratulations!");
+        service.getSc();
     }
 }
 

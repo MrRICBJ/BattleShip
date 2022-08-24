@@ -16,6 +16,11 @@ public class GameService implements Service {
     }
 
     @Override
+    public void getSc() {
+        sc.close();
+    }
+
+    @Override
     public void addShip(Player player) {
         String input;
         System.out.printf("Player %s, place your ships to the game field\n", player.getName());
@@ -243,7 +248,6 @@ public class GameService implements Service {
     public void shot(Player player1, Player player2) {
         String shotLocation;
         int coordinate;
-        Ship ship;
         renderer.render(player2.getMap(), 1);
         System.out.println("----------------------");
         renderer.render(player1.getMap(), 0);
@@ -260,9 +264,9 @@ public class GameService implements Service {
                         if (player2.getAllShip().get(shotLocation).getCountCell() == 0) {
                             player2.setCount();
                             fillEmptyCell(player2.getAllShip().get(shotLocation), player2.getMap().getGameMapCopy());
-                            if (player2.getCount() != 1)   //тут поменять на 5-----------------------------------------------
+                            if (player2.getCount() != 5)
                                 System.out.println("You sank a ship!");
-                        } else if (player2.getAllShip().get(shotLocation).getCountCell() != 0 && player2.getCount() != 1) //тут поменять на 5------------------------------------------
+                        } else if (player2.getAllShip().get(shotLocation).getCountCell() != 0 && player2.getCount() != 5)
                             System.out.println("You hit a ship!");
                     }
                     renderer.render(player2.getMap(), 1);
@@ -272,7 +276,7 @@ public class GameService implements Service {
                 }
             }
         }
-        if (player2.getCount() != 1) {   //тут поменять на 5------------------------------------------------------------------------------------
+        if (player2.getCount() != 5) {
             System.out.println("Press Enter and pass the move to another player");
             sc.nextLine();
         }

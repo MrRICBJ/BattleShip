@@ -17,11 +17,13 @@ public interface Service {
     boolean verifyInput(String input, Ship ship);
     void argument(String[] s, Ship ship, int x1, int x2);
     boolean seeCellY(String[][] s, int y1, int y2, int count);
-    public void hashCoordination(Ship ship, Player player);
-    public boolean whichShip(int a, int b);
+    void hashCoordination(Ship ship, Player player);
+    boolean whichShip(int a, int b);
     void shot(Player player1, Player player2);
     int watch(Player player1, String shotLocation, Player player2);
     boolean verifyShot(String s);
     void fillEmptyCell(Ship ship, String[][] map);
     String correctName();
-    }
+
+    void getSc();
+}
